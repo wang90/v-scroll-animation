@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-roll-loop :height='80'>
+      <vue-roll-loop-item>
+       vue1
+      </vue-roll-loop-item>
+      <vue-roll-loop-item>
+        vue2
+      </vue-roll-loop-item>
+      <vue-roll-loop-item>
+        vue3
+      </vue-roll-loop-item>
+      <vue-roll-loop-item>
+        vue4
+      </vue-roll-loop-item>
+      <vue-roll-loop-item>
+        vue5
+      </vue-roll-loop-item>
+    </vue-roll-loop>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      list: [],
+    }
+  },
+  created(){
+    setTimeout(() => {
+        this.list = [1,12,3,]
+    },1000)
+    
+    console.log(1)
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
