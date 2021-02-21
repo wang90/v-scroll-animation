@@ -1,6 +1,8 @@
 <template>
-    <div :class="['vue-roll-box','vue-roll-loop']" :style = "'height:' + currentH + 'px;'" >
-        <div :class="['vue-roll-loop']">
+    <div :class="['vue-roll-box','vue-roll-loop']" 
+        :style = "'height:' + currentH + 'px;'" >
+        <div :class="['vue-roll-loop']" 
+            :style="'transform: translateY('+ translateY +'px)'" id="list">
            <slot ref="slot"></slot>
         </div>
     </div>
@@ -11,37 +13,12 @@
         overflow: hidden;
         width: 100%;
     }
-    .vue-roll-loop {
-        animation: scroll 3s infinite linear;
-        -moz-animation: scroll 3s infinite linear;	
-        -webkit-animation: scroll 3s infinite linear;	
-        -o-animation: scroll 3s infinit;
-        animation-delay: 2s;
-        -webkit-animation-delay:2s; 
+    .vue-roll-loop { 
+        transition: all 0.4s;
     }
-    /*
-    @keyframes scroll {
-    0% {
-        transform: translateY( 0 );
-    }
-    3% {
-        transform: translateY( -44px );
-    }
-    50% {
-        transform: translateY( -44px );
-    }
-    53%{
-        transform: translateY( -88px );
-    }
-    100% {
-        transform: translateY( -88px );
-    }
-} */
 </style>
 <script>
 import { height } from "./config.js";
-// const classname = `animation: scroll 3s infinite linear; animation-delay: 2s;`
-
 export default {
     name: 'vueRollLoop',
     props:{
@@ -52,8 +29,9 @@ export default {
     },
     data() {
         return {
-            "currentH": height,
-            "classname": '',
+            currentH: height,
+            'classname': '',
+            'translateY':0,
         }
     },
     watch: {
@@ -82,31 +60,29 @@ export default {
         },
         bindCss(h) {
             if (typeof h === 'number') {
-                let style = document.createElement('style');
-                style.setAttribute('type', 'text/css');
-                document.head.appendChild(style);
-                let sheet = style.sheet;
                 let divs = document.querySelectorAll('.vue-roll-loop-item');
                 let len = divs.length;
-                console.log(len)
-                // const index = 1;
-                sheet.insertRule(
-                    `@keyframes scroll{
-  			            from {
-			                transform: rotate(300deg);
-  			            }
- 			            to {
- 			                //注意：动态的计算需要先计算再赋值，不然浏览器会直接当字符串来解析
-                            transform: rotate(400deg);
-                         }
-			        }`,0
-                );
-                // console.log(classname)
-                // this.classname = classname;
+                // const first = divs[0].cloneNode(true);
+                // // console.log(first);
+                // document.getElementById("list").appendChild(first);
+                setTimeout(() => {
+                    this.anmite( 0 ,len);
+                }, 3000)
+                
             }
+        },
+        anmite( current, count ) {
+            this.translateY = - this.currentH * current;
+            setTimeout(()=>{
+                let next = current + 1;
+                    if ( next >= count ) {
+                        next = 0;
+                }
+                this.anmite( next , count );
+            },3000);
         }
-        
     }
 }
+
 
 </script>

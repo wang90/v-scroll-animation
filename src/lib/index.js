@@ -1,5 +1,6 @@
 import vueRollLoop from './vue-roll-loop.vue' // 导入组件
 import vueRollLoopItem from './vue-roll-loop-item.vue' // 导入组件
+
 const rollloop = {
     install (Vue) {
         Vue.component( vueRollLoop.name, vueRollLoop );
@@ -9,4 +10,5 @@ const rollloop = {
        // 虽然没有明确规定用$开头  但是大家都默认遵守这个规定
     }
 }
+// const rollloop ={};
 export default rollloop // 导出..
