@@ -1,6 +1,6 @@
 {
   "name": "vrool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "基于vue上下滚动list",
   "author": "wang90",
