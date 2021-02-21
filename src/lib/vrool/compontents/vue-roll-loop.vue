@@ -10,10 +10,10 @@
 
 </template>
 <style scoped>
-@import './index.css';
+@import '../css/index.css';
 </style>
 <script>
-import { height , speed } from "./config.js";
+import { height , speed } from "../lib/config.js";
 
 export default {
     name: 'vueRollLoop',

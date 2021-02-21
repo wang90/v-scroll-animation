@@ -1,7 +1,9 @@
 {
-  "name": "v-roll-loop",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vrool",
+  "version": "1.0.0",
+  "private": false,
+  "description": "基于vue上下滚动list",
+  "author": "wang90",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

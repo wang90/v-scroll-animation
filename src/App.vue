@@ -31,9 +31,7 @@ export default {
   created(){
     setTimeout(() => {
         this.list = [1,12,3,]
-    },1000)
-    
-    console.log(1)
+    },1000);
   }
 }
 </script>

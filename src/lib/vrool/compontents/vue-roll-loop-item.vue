@@ -4,10 +4,10 @@
     </div>
 </template>
 <style scoped>
-@import './index.css';
+@import '../css/index.css';
 </style>
 <script>
-import { height } from "./config.js";
+import { height } from "../lib/config.js";
 export default {
     name: 'vueRollLoopItem',
     data() {
