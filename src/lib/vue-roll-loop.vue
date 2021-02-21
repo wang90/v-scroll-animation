@@ -1,24 +1,20 @@
 <template>
     <div :class="['vue-roll-box','vue-roll-loop']" 
         :style = "'height:' + currentH + 'px;'" >
-        <div :class="['vue-roll-loop']" 
+        <div :class="['vue-roll-loop',show]" 
             :style="'transform: translateY('+ translateY +'px)'" id="list">
            <slot ref="slot"></slot>
         </div>
+        <div :class="['vue-first-compontent',show]" id="first"></div>
     </div>
 
 </template>
 <style scoped>
-    .vue-roll-box {
-        overflow: hidden;
-        width: 100%;
-    }
-    .vue-roll-loop { 
-        transition: all 0.4s;
-    }
+@import './index.css';
 </style>
 <script>
-import { height } from "./config.js";
+import { height , speed } from "./config.js";
+
 export default {
     name: 'vueRollLoop',
     props:{
@@ -30,8 +26,9 @@ export default {
     data() {
         return {
             currentH: height,
-            'classname': '',
-            'translateY':0,
+            classname: '',
+            translateY: 0,
+            show: 'hide',
         }
     },
     watch: {
@@ -53,33 +50,39 @@ export default {
             this.bindHeight(h);
             this.bindCss(h);
         },
-        bindHeight(h) {
-            if (typeof h === 'number') {
+        bindHeight( h ) {
+            if ( typeof h === 'number' ) {
                 this.currentH = h;
             }
         },
-        bindCss(h) {
-            if (typeof h === 'number') {
+        bindCss( h ) {
+            if ( typeof h === 'number' ) {
                 let divs = document.querySelectorAll('.vue-roll-loop-item');
                 let len = divs.length;
-                // const first = divs[0].cloneNode(true);
-                // // console.log(first);
-                // document.getElementById("list").appendChild(first);
+                const first = divs[0].cloneNode(true);
+                document.getElementById("first").innerHTML = first.innerHTML;
                 setTimeout(() => {
-                    this.anmite( 0 ,len);
-                }, 3000)
+                    this.anmite( 0 ,len );
+                }, speed );
                 
             }
         },
         anmite( current, count ) {
             this.translateY = - this.currentH * current;
-            setTimeout(()=>{
+            setTimeout(() => {
                 let next = current + 1;
-                    if ( next >= count ) {
-                        next = 0;
+                if ( next >= count ) {
+                    next = 0;
+                    this.show = 'show';
+                    setTimeout(()=> {
+                        this.show = 'leave';
+                        setTimeout(()=> {
+                            this.show = 'hide';
+                        }, speed);
+                    }, speed);
                 }
                 this.anmite( next , count );
-            },3000);
+            }, speed );
         }
     }
 }

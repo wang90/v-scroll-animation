@@ -1,0 +1,33 @@
+.vue-roll-box {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+.vue-first-compontent {
+    position: absolute;
+    height: 100%;
+    width:100%;
+    top: 100%;
+    left: 0;
+    transition: top 0.4s;
+    opacity: 0;
+}
+.vue-first-compontent.show {
+    top: 0;
+    opacity: 1;
+}
+.vue-first-compontent.leave {
+    top: -100%;
+}
+.vue-roll-loop { 
+    transition: transform 0.4s;
+    opacity: 1;
+}
+.vue-roll-loop.show {
+    opacity: 0;
+}
+
+.vue-roll-loop-item,
+.vue-first-compontent {
+    /* background:#ccc; */
+}

@@ -4,9 +4,7 @@
     </div>
 </template>
 <style scoped>
-.vue-roll-loop-item {
-    background:#ccc;
-}
+@import './index.css';
 </style>
 <script>
 import { height } from "./config.js";
